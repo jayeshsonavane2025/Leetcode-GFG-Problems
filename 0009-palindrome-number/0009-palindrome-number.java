@@ -1,8 +1,5 @@
 class Solution {
-    public boolean isPalindrome(int x) {
-         return isPalindromeHelper(x);
-    }
-    public static boolean isPalindromeHelper(int x){
+    public static boolean isPalindrome(int x){
         if(x<0)return false;
         int temp=x;
         int res=0;
