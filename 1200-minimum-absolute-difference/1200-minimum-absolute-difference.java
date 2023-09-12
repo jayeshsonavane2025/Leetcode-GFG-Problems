@@ -4,7 +4,10 @@ class Solution {
         Arrays.sort(a);
         int minDiff=Integer.MAX_VALUE;
         for(int i=1;i<a.length;i++){
-            minDiff=Math.min(minDiff,Math.abs(a[i]-a[i-1]));
+            //minDiff=Math.min(minDiff,Math.abs(a[i]-a[i-1]));
+            if(minDiff>Math.abs(a[i]-a[i-1])){
+                minDiff=Math.abs(a[i]-a[i-1]);
+            }
         }
         for(int i=1;i<a.length;i++){
             if(Math.abs(a[i]-a[i-1])==minDiff){
