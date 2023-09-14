@@ -1,17 +1,36 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-      Map<Integer,Integer>map=new HashMap<>();
-      int n=nums.length;
+      int sum=0;
+      int start=0,end=nums.length-1;
       int[] a=new int[2];
-      for(int i=0;i<n;i++){
-        int value=target-nums[i];
-        if(map.containsKey(value)){
-          a[0]=map.get(value);
-          a[1]=i+1;
-        }
-        map.put(nums[i],i+1);
+      while(start<end){
+          //checking conditions
+          //whether it is repeated prev or not
+          if(start>0 && nums[start]==nums[start-1]){
+              start++;
+              continue;
+          }
+          if(end<nums.length-1 && nums[end]==nums[end+1] ){
+              end--;
+              continue;
+          }
+          sum=nums[start]+nums[end];
+          
+          if(sum==target){
+              a[0]=++start;
+              a[1]=++end;
+              break;
+              
+          }
+          else if(sum>target){
+              end--;
+          }
+          else{
+              start++;
+          }
+          
       }
-
-      return a; 
+    return a;
+    
     }
 }
