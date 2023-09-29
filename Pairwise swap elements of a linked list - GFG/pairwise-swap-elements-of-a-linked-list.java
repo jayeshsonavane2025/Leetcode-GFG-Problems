@@ -87,25 +87,37 @@ class Node
 */
 
 
+
 class Solution {
     // Function to pairwise swap elements of a linked list.
     // It should returns head of the modified list
     public Node pairwiseSwap(Node head)
     {
-      if(head==null||head.next==null)return head;
-      
-      Node temp=new Node(-1);
-      temp.next=head;
-      Node prev=temp,cur=head;
-      while(cur!=null&&cur.next!=null){
-          Node fow=cur.next;
-          Node np=cur.next.next;
-          fow.next=cur;
-          cur.next=np;
-          prev.next=fow;
-          prev=cur;
-          cur=np;
-      }
-      return temp.next;
+        // code here
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+        Node prev=null;
+        Node curr=head;
+        while(curr!=null && curr.next!=null)
+        {
+            Node newnext=curr.next;
+            curr.next=newnext.next;
+            newnext.next=curr;
+            if(prev==null)
+            {
+                head=newnext;
+            }
+            else
+            {
+                prev.next=newnext;
+            }
+                prev=curr;
+                curr=curr.next;
+            
+        }
+        return head;
+        
     }
 }
