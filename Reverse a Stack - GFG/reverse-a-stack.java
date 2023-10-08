@@ -48,19 +48,25 @@ class Solution
 { 
     static void reverse(Stack<Integer> s)
     {
-        // add your code here
-        Stack<Integer> rt=new Stack<>();
-        Stack<Integer> et=new Stack<>();
+        if(s.isEmpty())
+        {
+            return;
+        }
+        int x=s.pop();
+        reverse(s);
+        bottom(s,x);
         
-        while(s.size()>0){
-            rt.push(s.pop());
+    }
+    private static void bottom(Stack<Integer> s,int x)
+    {
+        if(s.isEmpty())
+        {
+            s.push(x);
+            return;
         }
-        while(rt.size()>0){
-            et.push(rt.pop());
-        }
-        while(et.size()>0){
-            s.push(et.pop());
-        }
-        
+        int y=s.pop();
+        bottom(s,x);
+        s.push(y);
+       
     }
 }
