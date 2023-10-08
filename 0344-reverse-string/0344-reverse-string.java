@@ -10,8 +10,8 @@ class Solution {
         while(st.size() > 0){
             s[i++] = st.pop();
         }
-        for(int j = 0; j < str.length(); j++){
-            ans[j] = str.charAt(j);
-        }
+        // for(int j = 0; j < str.length(); j++){
+        //     ans[j] = str.charAt(j);
+        // }
     }
 }
