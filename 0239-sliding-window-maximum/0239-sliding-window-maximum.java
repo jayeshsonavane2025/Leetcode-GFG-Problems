@@ -1,27 +1,24 @@
 class Solution {
-      public int[] maxSlidingWindow(int[] arr, int k) {
-        
-        // For Finding Next Greater Element
-        int[] nge = new int[arr.length];
-        Stack<Integer> st = new Stack<>();
-        st.push(arr.length - 1);
-        nge[arr.length - 1] = arr.length;
-        for (int i = arr.length - 2; i >= 0; --i) {
-            while (!st.isEmpty() && arr[i] >= arr[st.peek()]) 
-                st.pop();
-            if (st.isEmpty()) nge[i] = arr.length; 
-            else nge[i] = st.peek();
-            st.push(i);
-        }
+    public int[] maxSlidingWindow(int[] nums, int k) {
+         int length = nums.length;
+        int[] result = new int[length - k + 1];
+        int right = 0;
+        Deque<Integer> dq = new ArrayDeque<>();
+        for (int i = 0; i < length; i ++) {
+            while (!dq.isEmpty() && dq.peekFirst() < i - k + 1) {
+                dq.pollFirst();
+            }
 
-        int[] ans = new int[arr.length - k + 1];
-        int j = 0; // To travel in nge
-        for (int i = 0; i <= arr.length - k; ++i) {
-            if (j < i) j = i;
-            while (nge[j] < i + k) j = nge[j];
-            ans[i] = arr[j];
+            while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) {
+                dq.pollLast();
+            }
+
+            dq.addLast(i);
+            if (i >= k - 1) {
+                result[right] = nums[dq.peekFirst()];
+                right++;
+            }
         }
-        
-        return ans;
+        return result;
     }
-} 
+}
