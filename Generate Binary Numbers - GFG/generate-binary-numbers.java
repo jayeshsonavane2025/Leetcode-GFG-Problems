@@ -44,23 +44,15 @@ class solve{
     {
         // Your code here
         ArrayList<String> list=new ArrayList<>();
-         String str;
-
-         for(int i=1;i<=n;i++){
-          int temp=i;
-          str="";
-          while(temp!=0){
-            if((temp & 1)  == 1){ 
-              str="1"+str;
-            }
-            else{
-              str="0"+str;
-               }
-            temp=temp>>1;
-          }
-          list.add(str);
-         }
-         return list;
+        Queue<String> q=new LinkedList<>();
+        q.add("1");
+        for(int i=0;i<n;i++){
+            String temp=q.remove();
+            list.add(temp);
+            q.add(temp+"0");
+            q.add(temp+"1");
+        }
+        return list;
     }
     
 }
