@@ -15,7 +15,7 @@ class Solution {
         int[] ans=new int[2];
         ans[1]=fnum;
         ans[0]=secnum;
-        Arrays.sort(ans);
+        
         return ans;
     }
 }
