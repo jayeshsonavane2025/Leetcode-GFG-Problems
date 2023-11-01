@@ -35,21 +35,10 @@ class Driver_class
 class Solution{
     
     // Function to check if given number n is a power of two.
-    public static boolean isPowerofTwo(long n){
+    public static boolean isPowerofTwo(long x){
         
         // Your code here
-        int cnt=0;
-        while(n!=0){
-            if((n & 1) != 0){
-                cnt++;
-            }
-            
-            n>>=1;
-        }
-        if(cnt==1){
-            return true;
-        }
-        return false;
+        return  ((x & (x - 1)) == 0);
     }
     
 }
