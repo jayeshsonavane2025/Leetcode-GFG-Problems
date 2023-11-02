@@ -1,14 +1,8 @@
 class Solution {
-    public int titleToNumber(String s) {
-        // if(s==null){
-        //     return -1;
-        // }
-        int sum=0;
-        s.toUpperCase();
-        for(char c:s.toCharArray()){
-            sum*=26;
-            sum+=c-'A'+1;
-        }
-        return sum;
-    }
+    public int titleToNumber(String columnTitle) {
+    int columnNumber = 0;
+    for(int i = 0; i < columnTitle.length(); i++)
+        columnNumber = columnNumber * 26 + columnTitle.charAt(i) - 'A' + 1;
+    return columnNumber;
+}
 }
