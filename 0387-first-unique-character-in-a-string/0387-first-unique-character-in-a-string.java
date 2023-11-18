@@ -1,18 +1,19 @@
 class Solution {
-    public int firstUniqChar(String s) {
-    Queue<Character> q=new LinkedList<>();
-    int[] freq=new int[26];
-     
-    for(int i=0;i<s.length();i++){
-      char c=s.charAt(i);
-      q.offer(c);
-      freq[c-'a']++;
-
-      while(!q.isEmpty() && freq[q.peek()-'a']>1){
-        q.poll();
-      }
-      
-    } 
-     return q.isEmpty()?-1:s.indexOf(q.peek());
+    public int firstUniqChar(String S) {
+   HashMap<Character, Integer> frequencyMap = new HashMap<>();
+        
+        // Count frequency of each character
+        for (char c : S.toCharArray()) {
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        }
+        
+        // Find the first non-repeating character
+        for (char c : S.toCharArray()) {
+            if (frequencyMap.get(c) == 1) {
+                return S.indexOf(c);
+            }
+        }
+        
+        return -1;  
     }
 }
