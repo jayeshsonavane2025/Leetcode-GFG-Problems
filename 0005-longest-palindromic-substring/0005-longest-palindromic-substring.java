@@ -27,13 +27,13 @@ class Solution {
 
 	static boolean palin(String str) {
 
-		int i=0,j=str.length()-1,c=0;
+		int i=0,j=str.length()-1;
 
 		while(i<j) {
 
 			if(str.charAt(i)==str.charAt(j)) {
 
-				c++;i++;j--;
+				i++;j--;
 
 			}
             else return false;
