@@ -31,11 +31,18 @@ class Solution {
     // Note that the size of the array is n-1
     int missingNumber(int n, int arr[]) {
 
-        // Your Code Here
-        int sum=0;
-        for(int i =0;i<arr.length;i++){
-            sum= sum+arr[i];
+         int val = 0;
+
+        // XOR all numbers from 1 to n
+        for (int i = 1; i <= n; i++) {
+            val = val ^ i;
         }
-        return n*(n+1)/2 - sum;
+
+        // XOR all elements in the array
+        for (int i = 0; i < n - 1; i++) {
+            val = val ^ arr[i];
+        }
+
+        return val;
     }
 }
