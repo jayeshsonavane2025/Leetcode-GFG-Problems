@@ -10,12 +10,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int t = Integer.parseInt(sc.nextLine());
         while (t-- > 0) {
-            List<Integer> arr = new ArrayList<>();
-            String input = sc.nextLine();
-            Scanner ss = new Scanner(input);
-            while (ss.hasNextInt()) {
-                arr.add(ss.nextInt());
-            }
+            String[] arr1Str = sc.nextLine().split(" ");
+            int[] arr = Arrays.stream(arr1Str).mapToInt(Integer::parseInt).toArray();
             Solution ob = new Solution();
             int ans = ob.print2largest(arr);
             System.out.println(ans);
@@ -26,33 +22,23 @@ public class Main {
 // } Driver Code Ends
 
 
+// User function Template for Java
 
-
-
-
-
-
-//User function Template for Java
 class Solution {
-    public int print2largest(List<Integer> arr) {
+    public int print2largest(int[] arr) {
         // Code Here
-        
-        if(arr.size()<2){
-            return -1;
-        }
-        
-        int max = Integer.MIN_VALUE;
-        int second_max = Integer.MIN_VALUE;
-        
-        for(int i=0;i<arr.size();i++){
-            if(arr.get(i)>max){
-                second_max = max;
-                max = arr.get(i);
-            }else if(arr.get(i)>second_max && arr.get(i)!=max){
-                second_max = arr.get(i);
+        int large=arr[0],sLarge=-1;
+        for(int item:arr){
+            if(item>large){
+                sLarge=large;
+                large=item;
+                
+            }
+            else if(item>sLarge && item!=large){
+                sLarge=item;
             }
         }
-        return second_max;
+        return sLarge;
+        
     }
 }
-
