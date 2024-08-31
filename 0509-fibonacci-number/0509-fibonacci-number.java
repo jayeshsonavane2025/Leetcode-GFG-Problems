@@ -4,7 +4,8 @@ class Solution {
         {
             return n;
         }  
-        int fibonacci= fib(n-1)+fib(n-2);
-        return fibonacci;
-    }}
+        
+        return fib(n-1)+fib(n-2);
+    }
+}
  
