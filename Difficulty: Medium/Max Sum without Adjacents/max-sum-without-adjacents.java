@@ -41,11 +41,8 @@ class Solution {
         //if the result is alrady calc we avoid overlappin subproblem 
         if(dp[ind]!=-1) return dp[ind];
         
-        //if not calculate the max sum by picking or not 
-        int pick=arr[ind] + f(ind-2,dp,arr);
-        int notpick=0+ f(ind-1,dp,arr);
         
-        return dp[ind]=Math.max(pick,notpick);
+        return dp[ind]=Math.max(arr[ind] + f(ind-2,dp,arr),f(ind-1,dp,arr));
         
     }
     int findMaxSum(int arr[], int n) {
