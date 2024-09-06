@@ -36,7 +36,7 @@ class Main {
 // } Driver Code Ends
 
 
-
+// User function Template for Java
 class Solution {
 
     // arr: input array
@@ -44,19 +44,15 @@ class Solution {
     long maxSubarraySum(int[] arr) {
 
         // Your code here
-        long sum=0;
-        long maxSum=Integer.MIN_VALUE;
-        for(int i=0;i<arr.length;i++){
-            sum+=arr[i];
+        int sum=0;
+        int ans=Integer.MIN_VALUE;
+        for(int item:arr){
             
-            
-            
-            maxSum=Math.max(sum,maxSum);
-            if(sum<0){
-                sum=0;
-            }
+             sum+=item;
+             ans=Math.max(sum,ans);
+             if(sum<0)sum=0;
         }
-        return maxSum;
+        return ans;
+        
     }
 }
-
