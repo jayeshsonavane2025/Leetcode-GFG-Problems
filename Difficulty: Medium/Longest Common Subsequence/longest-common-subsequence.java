@@ -24,39 +24,31 @@ class GFG {
 // } Driver Code Ends
 
 
-
-
-
-
-
-
-
-class Solution
-{
-    //Function to find the length of longest common subsequence in two strings.
-    int lcs(int x, int y, String s1, String s2)
-    {
-        int dp[][] = new int[x + 1][y + 1];
-        for (int i = 0; i < dp.length; i++) {
-            Arrays.fill(dp[i], -1);
-        }
-        return function(0, 0, s1, s2, dp);
-    }
+class Solution {
+    // Function to find the length of longest common subsequence in two strings.
+    static int lcs(int n, int m, String str1, String str2) {
+        // your code here
     
-    public int function(int a, int b, String s1, String s2, int dp[][]) {
-        if (dp[a][b] != -1) {
-            return dp[a][b];
-        }
-        if (a == s1.length() || b == s2.length()) {
-            return 0;
-        }
-        if (s1.charAt(a) == s2.charAt(b)) {
-            return dp[a][b]= 1 + function(a + 1, b + 1, s1, s2, dp);
-             
-        }
-       
-         return dp[a][b]= Math.max(function(a, b + 1, s1, s2, dp),function(a + 1, b, s1, s2, dp));
+     int[][] dp = new int[n+1][m+1];
+     for(int i=0;i<n+1;i++){
+         dp[i][0]=0;
          
+     }
+     for(int i=0;i<m+1;i++){
+         dp[0][i]=0;
+         
+     }
+        
+        for(int i =1;i<n+1;i++){
+            for(int j=1;j<m+1;j++){
+                if(str1.charAt(i-1)==str2.charAt(j-1)){
+                    dp[i][j]=dp[i-1][j-1]+1;
+                }else{
+                  dp[i][j]= Math.max(dp[i][j-1],dp[i-1][j]);  
+                }
+            }
+        }
+        return dp[n][m];
+        
     }
-    
 }
