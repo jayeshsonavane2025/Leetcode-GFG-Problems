@@ -1,17 +1,14 @@
 class Solution {
     public int minGroups(int[][] intervals) {
-        int[] cnt = new int[1_000_002];
-        for(var i:intervals){
-            cnt[i[0]]++;
-            cnt[i[1]+1]--;
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int[] interval : intervals) {
+            int start = interval[0], end = interval[1];
+            if (!pq.isEmpty() && pq.peek() < start) {
+                pq.poll();
+            }
+            pq.add(end);
         }
-
-
-        int maxi=0, temp=0;
-        for(int c:cnt){
-            temp += c;
-            maxi = Math.max(maxi, temp);
-        }
-        return maxi;
+        return pq.size();
     }
 }
