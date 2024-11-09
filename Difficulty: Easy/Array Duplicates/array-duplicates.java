@@ -2,42 +2,32 @@
 import java.io.*;
 import java.util.*;
 
-class IntArray {
-    public static int[] input(BufferedReader br, int n) throws IOException {
-        String[] s = br.readLine().trim().split(" ");
-        int[] a = new int[n];
-        for (int i = 0; i < n; i++) a[i] = Integer.parseInt(s[i]);
-
-        return a;
-    }
-
-    public static void print(int[] a) {
-        for (int e : a) System.out.print(e + " ");
-        System.out.println();
-    }
-
-    public static void print(ArrayList<Integer> a) {
-        for (int e : a) System.out.print(e + " ");
-        System.out.println();
-    }
-}
-
-class GFG {
-    public static void main(String[] args) throws IOException {
+class Geeks {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t;
-        t = Integer.parseInt(br.readLine());
-        while (t-- > 0) {
+        int t = Integer.parseInt(br.readLine()); // Number of test cases
+        for (int g = 0; g < t; g++) {
+            String[] str =
+                (br.readLine()).trim().split(" "); // Reading input as a string array
+            int arr[] = new int[str.length]; // Creating integer array from the input
+            for (int i = 0; i < str.length; i++) {
+                arr[i] = Integer.parseInt(str[i]);
+            }
 
-            int n;
-            n = Integer.parseInt(br.readLine());
+            // Getting the result from the Solution class
+            List<Integer> result = new Solution().findDuplicates(arr);
 
-            int[] arr = IntArray.input(br, n);
-
-            Solution obj = new Solution();
-            ArrayList<Integer> res = obj.duplicates(arr);
-
-            IntArray.print(res);
+            // Printing the result in the required format
+            if (result.isEmpty()) {
+                System.out.println("[]");
+            } else {
+                for (int i = 0; i < result.size(); i++) {
+                    if (i != 0) System.out.print(" ");
+                    System.out.print(result.get(i));
+                }
+                System.out.println();
+            }
+            System.out.println("~");
         }
     }
 }
@@ -49,23 +39,21 @@ class GFG {
 
 
 
+
 class Solution {
-    public static ArrayList<Integer> duplicates(int[] arr) {
+    public List<Integer> findDuplicates(int[] arr) {
         // code here
-        ArrayList<Integer> ar = new ArrayList<>();
-        int[] temp = new int[arr.length];
-        for(int i = 0; i<temp.length; i++){
-            temp[arr[i]]++;
-        }
-        for (int i = 0; i < temp.length; i++) {
-            if(temp[i]>= 2){
-                ar.add(i);
+        Arrays.sort(arr);
+        int n = arr.length;
+        
+       
+        List<Integer> ll=new ArrayList<Integer>(n);
+        
+        for(int i =0;i < n-1;i++){
+            if(arr[i] == arr[i+1]){
+                ll.add(arr[i]);
             }
         }
-        if(ar.size()==0){
-            ar.add(-1);
-        }
-        return ar;
+        return ll;
     }
 }
-
