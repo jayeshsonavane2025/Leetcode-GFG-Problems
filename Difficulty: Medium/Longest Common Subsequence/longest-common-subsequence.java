@@ -9,48 +9,49 @@ class GFG {
         Scanner sc = new Scanner(System.in);
         int test = sc.nextInt();
         while (test-- > 0) {
-            int n = sc.nextInt(); // Take size of both the strings as input
-            int m = sc.nextInt();
-
-            String str1 = sc.next(); // Take both the string as input
-            String str2 = sc.next();
+            String s1 = sc.next(); // Take both the strings as input
+            String s2 = sc.next();
 
             Solution obj = new Solution();
 
-            System.out.println(obj.lcs(n, m, str1, str2));
+            // Call the getLCSLength function with the lengths of the strings as
+            // parameters
+            System.out.println(obj.getLCSLength(s1, s2));
+            System.out.println("~");
         }
+        sc.close();
     }
 }
+
 // } Driver Code Ends
 
 
 
 
 class Solution {
-    // Function to find the length of longest common subsequence in two strings.
-    static int lcs(int n, int m, String str1, String str2) {
-        // your code here
-    
-     int[][] dp = new int[n+1][m+1];
-    //  for(int i=0;i<n+1;i++){
-    //      dp[i][0]=0;
-         
-    //  }
-    //  for(int i=0;i<m+1;i++){
-    //      dp[0][i]=0;
-         
-    //  }
-        
-        for(int i =1;i<n+1;i++){
-            for(int j=1;j<m+1;j++){
-                if(str1.charAt(i-1)==str2.charAt(j-1)){
-                    dp[i][j]=dp[i-1][j-1]+1;
-                }else{
-                  dp[i][j]= Math.max(dp[i][j-1],dp[i-1][j]);  
+    // Function to find the length of the longest common subsequence in two strings.
+    static int getLCSLength(String s1, String s2) 
+    {
+        int n=s1.length();
+        int m=s2.length();
+        int[][] dp=new int[n+1][m+1];
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=m;j++)
+            {
+                if(i==0 || j==0)
+                {
+                    dp[i][j]=0;
+                }
+                else if(s1.charAt(i-1)==s2.charAt(j-1))
+                {
+                    dp[i][j]=1+dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
                 }
             }
         }
         return dp[n][m];
-        
     }
 }
