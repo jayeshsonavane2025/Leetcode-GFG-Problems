@@ -31,12 +31,15 @@ class GFG {
             int key = Integer.parseInt(in.readLine().trim());
             Solution ob = new Solution();
             out.println(ob.kthSmallest(arr, key));
+            out.println("~");
         }
         out.flush();
     }
 }
 
 // } Driver Code Ends
+
+ 
 
 
 
