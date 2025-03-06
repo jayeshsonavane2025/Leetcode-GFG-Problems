@@ -52,14 +52,10 @@ class Solution{
     public static int kthSmallest(int[] a, int k) 
     { 
         //Your code here
-         PriorityQueue<Integer> minheap=new PriorityQueue<>();
-         
-         for(int i=0;i<a.length;i++){
-             minheap.offer(a[i]);
-         }
-         for(int i=0;i<k-1;i++){
-             minheap.poll();
-         }
-         return minheap.poll();
+        Arrays.sort(a);
+        int n=a.length;
+        return a[k-1];
+        // 3 4 7 10 15 20
+
     } 
 }
